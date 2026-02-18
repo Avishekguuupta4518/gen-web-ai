@@ -9,7 +9,7 @@ import WebsiteEditor from "./pages/WebsiteEditor";
 import LiveSite from "./pages/LiveSite";
 import Pricing from "./pages/Pricing";
 import PaymentSuccess from "./pages/PaymentSuccess";
-export const serverUrl = "http://localhost:8000";
+export const serverUrl = "https://gen-web-ai.onrender.com";
 
 const App = () => {
   useGetCurrentUser();
