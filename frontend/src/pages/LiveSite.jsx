@@ -12,8 +12,8 @@ const Livesite = () => {
     const handleGetWebsite = async () => {
       try {
         const result = await axios.get(
-          `${serverUrl}/api/website/get-by-slug/${id}`,
-          { withCredentials: true },
+          `${serverUrl}/api/website/get-by-slug/${id}`
+          
         );
         setHtml(result.data.latestCode);
       } catch (error) {
@@ -33,19 +33,8 @@ const Livesite = () => {
     );
   }
 
-  //   if (!website) {
-  //     return (
-  //       <div className="h-screen flex items-center justify-center bg-black text-white">
-  //         Loading...
-  //       </div>
-  //     );
-  //   }
-
   return (
-    // <div className="h-screen w-screen bg-black text-white flex flex-col">
-    //   <div className="h-14 px-4 flex items-center justify-between border-b border-white/10 bg-black/80">
-    //     <h1 className="font-semibold truncate">{website.title}</h1>
-    //   </div>
+   
 
     <iframe
       srcDoc={html}
