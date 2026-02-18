@@ -63,7 +63,8 @@ This is not a toy project — it follows real-world SaaS architecture with authe
 
 
 🧱 Project Architecture
-ai-website-builder/
+```
+gen-web-ai/
 │
 ├── frontend/                     # React Frontend
 │   ├── src/
@@ -80,161 +81,144 @@ ai-website-builder/
 │   ├── config/
 │   │   ├── db.js               # MongoDB connection
 │   │   ├── stripe.js           # Stripe config
-│   │   └── firebase.js
-│   │
+│   │   └── openRouter.js
+│   │   └── plan.js
 │   ├── controllers/
 │   │   ├── auth.controller.js
-│   │   ├── website.controller.js
-│   │   ├── deploy.controller.js
-│   │   └── stripe.controller.js
-│   │
+│   │   ├── billing.controller.js
+│   │   ├── stripeWebHook.controller.js
+│   │   └── user.controller.js
+│   │   └── website.controller.js
 │   ├── models/
 │   │   ├── user.model.js
 │   │   └── website.model.js
 │   │
 │   ├── routes/
 │   │   ├── auth.routes.js
-│   │   ├── website.routes.js
-│   │   ├── deploy.routes.js
-│   │   └── stripe.routes.js
+│   │   ├── billing.routes.js
+│   │   ├── user.routes.js
+│   │   └── website.routes.js
 │   │
 │   ├── middleware/
-│   │   ├── auth.middleware.js
-│   │   └── webhook.middleware.js
-│   │
+│   │   ├── isAuth.js
+|   |
+│   │── utils/
+│   │   ├── ectract.json
 │   ├── index.js
 │   └── package.json
 │
 ├── .env.example
 ├── README.md
 └── package-lock.json
+```
 
 ---
 
 ## 🔐 Environment Variables
 
 ### Backend (`server/.env`)
-
-
+```bash
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 
 STRIPE_SECRET_KEY=your_stripe_secret_key
 STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+```
+---
+## Frontend (frontend/.env)
 
-### Frontend (`frontend/.env`)
-
+```
 OPENROUTER_API_KEY=your_openrouter_api_key
 CLIENT_URL=http://localhost:5173
+```
+---
 
-### Create a .env file in client/:
+# ▶️ How to Run Locally
+## 1️⃣ Clone the Repositor
+```
+https://github.com/Avishekguuupta4518/gen-web-ai.git
+cd gen-wen-ai
+```
+---
+## 2️⃣ Backend Setu
+```
+cd backend
+npm install
+npm run dev
+```
+---
+### Backend will run on:
+```
+http://localhost:5000
+```
+---
 
-VITE_API_URL=http://localhost:5000
-VITE_FIREBASE_API_KEY=your_firebase_key
-VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+##  3️⃣ Frontend Setu
+```
+cd frontend
+npm install
+npm run dev
+```
+---
+### Frontend will run on:
+```
+http://localhost:5173
+```
+---
+
+## 💳 Stripe Webhooks (Local Testing)
+## Use Stripe CLI:
+```
+stripe listen --forward-to localhost:5000/api/stripe/webhook
+```
+---
+## Copy the webhook secret and paste it into:
+```
+STRIPE_WEBHOOK_SECRET=whsec_*****
+```
+---
+
+# 🧠 Credit Logic (How It Works)
+- New users start with free credits
+- AI generation costs X credits
+- Credits are deducted after successful generation
+- Users purchase credits via Stripe Checkout
+- Webhooks securely update credits after payment success
+---
+# 🔐 Security Measures
+- JWT-based authentication
+- Firebase Google Auth
+- Protected routes (frontend + backend)
+- Stripe webhook signature verification
+- Server-side credit validation
 
 ---
 
-## ▶️ How to Run Locally
-
-1️⃣ **Clone the Repository**
-```bash
-git clone https://github.com/your-username/ai-website-builder.git
-cd ai-website-builder
-```
-
-2️⃣ Backend Setup
-cd server
-npm install
-npm run dev
-
-
-Server will run on:
-
-http://localhost:5000
-
-3️⃣ Frontend Setup
-cd client
-npm install
-npm run dev
-
-
-Frontend will run on:
-
-http://localhost:5173
-
-💳 Stripe Webhooks (Local Testing)
-
-Use Stripe CLI:
-
-stripe listen --forward-to localhost:5000/api/stripe/webhook
-
-
-Copy the webhook secret and paste it into:
-
-STRIPE_WEBHOOK_SECRET=whsec_*****
-
-🧠 Credit Logic (How It Works)
-
-New users start with free credits
-
-AI generation costs X credits
-
-Credits are deducted after successful generation
-
-Users purchase credits via Stripe Checkout
-
-Webhooks securely update credits after payment success
-
-🔐 Security Measures
-
-JWT-based authentication
-
-Firebase Google Auth
-
-Protected routes (frontend + backend)
-
-Stripe webhook signature verification
-
-Server-side credit validation
-
-☁️ Deployment (Render)
-
-Backend deployed as Web Service
-
-Frontend deployed as Static Site
-
-MongoDB Atlas for production DB
-
-Stripe in Live Mode
-
-🎯 Use Cases
-
-Final Year Major Project
-
-SaaS Startup MVP
-
-Advanced MERN Portfolio
-
-Freelancing / Client Projects
-
-AI + Fullstack Learning
-
-🧪 Status
-
+# ☁️ Deployment (Render)
+- Backend deployed as Web Service
+- Frontend deployed as Static Site
+- MongoDB Atlas for production DB
+- Stripe in Live Mode
+---
+# 🎯 Use Cases
+- Final Year Major Project
+- SaaS Startup MVP
+- Advanced MERN Portfolio
+- Freelancing / Client Projects
+- AI + Fullstack Learning
+---
+# 🧪 Status
 ✅ Production-ready
 ✅ Scalable architecture
 ✅ Real payment system
 ✅ Real deployment workflow
-
-📌 Credits
-
-Inspired by Virtual Code
-Built & customized as a full SaaS-grade project
-
-📬 Feedback & Contributions
-
-PRs are welcome.
-Issues? Open one.
-Want enterprise features? Fork and scale. 😄
+---
+# 📌 Credits
+- Inspired by Virtual Code
+- Built & customized as a full SaaS-grade project
+---
+# 📬 Feedback & Contributions
+- PRs are welcome.
+- Issues? Open one.
+- Want enterprise features? Fork and scale. 
